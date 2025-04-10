@@ -1,0 +1,184 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+#map {
+  position: absolute;
+  top: 0;
+  left: 200px;
+  right: 0;
+  bottom: 0;
+}
+
+#sidebar {
+  position: absolute;
+  width: 200px;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 15px;
+  box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+  z-index: 1000;
+}
+
+#field-select {
+  width: 100%;
+  padding: 6px;
+}
+
+.legend {
+  background: white;
+  padding: 10px;
+  font-size: 14px;
+  line-height: 18px;
+  color: #333;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  border-radius: 5px;
+}
+
+.legend i {
+  width: 18px;
+  height: 18px;
+  float: left;
+  margin-right: 8px;
+  opacity: 0.7;
+  display: inline-block;
+}
+/* --- Styles for Tract Connections --- */
+
+/* Style for the active connection mode button */
+.action-button.active-connection-mode {
+  background-color: #01665e; /* Darker teal - match darkest map color */
+  color: white;
+  font-weight: bold;
+  border: 1px solid #01665e;
+}
+/* Style for inactive connection mode button */
+.action-button:not(.active-connection-mode) {
+    background-color: #f0f0f0; /* Lighter background */
+    color: #333;
+    border: 1px solid #ccc;
+}
+.action-button:not(.active-connection-mode):hover {
+     background-color: #e0e0e0;
+}
+
+/* Styles for highlighted connection layers */
+.selected-tract-highlight {
+    fill: none; /* No fill for the clicked tract */
+    stroke: #e63946; /* Bright color like red */
+    stroke-width: 3;
+    stroke-opacity: 1;
+    pointer-events: none; /* Allow clicks to pass through */
+}
+
+.connection-highlight {
+    stroke: #555; /* Subtle border for connected tracts */
+    stroke-width: 0.5;
+    stroke-opacity: 0.8;
+    fill-opacity: 0.75; /* Make fill slightly stronger */
+    pointer-events: none;
+}
+
+.connection-line {
+    opacity: 0.65;
+    pointer-events: none;
+    /* weight will be set dynamically */
+}
+
+.connection-origin-marker {
+    pointer-events: none;
+}
+
+/* Style for connection table (optional, if needed) */
+.connections-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    font-size: 0.9em;
+}
+
+.connections-table th,
+.connections-table td {
+    border: 1px solid #ddd;
+    padding: 6px 8px;
+    text-align: left;
+}
+
+.connections-table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+/* Styles the main container for the selected tract's details */
+#selected-tract-info {
+    /* Sets the space between lines of text within the container.
+       Adjust 1.4 (140% of font size) for more/less spacing overall. */
+    line-height: 1.4;
+
+    /* Add other container styles if needed, e.g.: */
+    padding: 10px; /* Add some internal spacing */
+    border: 1px solid #eee; /* Optional subtle border */
+    background-color: #f9f9f9; /* Optional light background */
+    min-height: 80px; /* Ensure it has some height initially */
+    margin-bottom: 10px; /* Spacing below the element */
+}
+
+/* Styles the main title (e.g., "Selected Tract: 12345") */
+#selected-tract-info strong {
+    /* Sets the text color for the strong element */
+    color: #333;
+    /* Make the title slightly larger and ensure it's block too */
+    display: block;
+    font-size: 1em; /* Slightly larger than the spans */
+    margin-bottom: 5px; /* Add space after the title */
+}
+
+/* Styles each individual piece of information (County, Race, Pop, etc.) */
+#selected-tract-info span {
+    /* THIS IS THE KEY RULE: Makes the inline <span> element behave
+       like a block-level element (like a <div> or <p>), forcing
+       it to start on a new line and take up the full available width. */
+    display: block;
+
+    /* Adds a small space below each line item */
+    margin-bottom: 3px; /* Adjust spacing as needed */
+
+    /* Sets the font size for the detail lines (slightly smaller) */
+    font-size: 0.9em;
+
+     /* Optional: Slightly lighter color for details */
+     color: #555;
+}
+
+.variable-selection-dropdowns {
+  display: flex;         /* 1. Enable Flexbox layout */
+  align-items: flex-end; /* 2. Align items along the cross-axis (bottom edge) */
+  gap: 15px;             /* 3. Optional: Add space between the two dropdown sections */
+  flex-wrap: wrap;       /* 4. Optional: Allow wrapping on smaller screens if needed */
+}
+
+/* Target the individual wrappers for each select/label */
+.variable-selection-dropdowns > div {
+  flex-grow: 1;          /* 5. Allow each section to grow and take available space */
+  /* Optional: Set a minimum width if needed for wrapping */
+  /* min-width: 200px; */
+}
+
+/* Ensure labels are block for proper alignment within their div */
+.variable-selection-dropdowns label {
+    display: block;
+    margin-bottom: 5px; /* Space between label and select */
+}
+
+/* Style the multi-select boxes themselves */
+.multi-select-vars {
+  width: 100%;        /* Make selects take full width of their container div */
+  min-height: 150px;  /* Optional: Give them a minimum height */
+  /* Add any other existing styles for border, padding, etc. */
+  border: 1px solid #ccc;
+  padding: 5px;
+  box-sizing: border-box; /* Include padding/border in width */
+  vertical-align: bottom; /* Helps sometimes, though flex-end should handle it */
+}
