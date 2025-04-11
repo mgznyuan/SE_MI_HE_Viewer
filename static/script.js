@@ -2398,6 +2398,10 @@ function getRaceColor(race) {
 
 // --- COMPLETE analyzeByRace function (Updated for Stats Storage & Download Button) ---
 function analyzeByRace(indexField) {
+    clearConnectionsDisplay(); // Remove connection lines
+
+    removeConnectionLegend();
+
     console.log("Attempting to analyze by race. Index Field:", indexField);
     const selectedRaceCheckboxes = document.querySelectorAll('.race-checkbox:checked');
     const selectedRaces = Array.from(selectedRaceCheckboxes).map(cb => cb.value.toLowerCase());
@@ -2782,6 +2786,7 @@ function attachEventListeners() {
     safeAddListener('field-select', 'change', e => {
         clearConnectionsDisplay();
         removeRaceLegend();
+        removeConnectionLegend(); 
         removeRaceBorderLayer();
         // Deactivate generate buttons visually when changing base variable
         document.getElementById('generate-index')?.classList.remove('activated');
